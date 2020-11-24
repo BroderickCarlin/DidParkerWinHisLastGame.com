@@ -1,2 +1,2 @@
 # Redirects from what the browser requests to what we serve
-/              http://i.imgur.com/di0LAwi.gif? 200
+/              http://i.imgur.com/di0LAwi.gif 200

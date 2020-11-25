@@ -2,6 +2,9 @@ const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 const mainText = document.querySelector("#main-text");
 const timeText = document.querySelector("#update-text");
 
+function cleanStr(str) {
+	return str.replace("\t", "").replace("\n", "").replace("\r", "");
+}
 
 async function getPageHtml() {
 	let resp = await fetch("https://didparkerwinhislastgame.netlify.app/opgg");
@@ -63,6 +66,13 @@ async function renew() {
 	}
 }
 
+function gameOutcome(didWin) {
+	if (didWin) {
+		return "won";
+	}
+	return "lost";
+}
+
 async function run() {
 	let pageHtml = await getPageHtml();
 	if (getMinutesSinceUpdate(pageHtml) > 5) {
@@ -71,6 +81,13 @@ async function run() {
 	}
 
 	timeText.textContent = 'Last updated ' + getMinutesSinceUpdate(pageHtml) + 'min ago';
+
+	let games = pageHtml.getElementsByClassName("GameItemWrap");
+	let lastGame = games[games.length - 1];
+	let didWin = lastGame.getElementsByClassName("GameResult")[0].innerText.search("Defeat") == -1;
+	let champName = cleanStr(lastGame.getElementsByClassName("ChampionName")[0].innerText);
+
+	mainText.textContent = 'Parker ' + gameOutcome(didWin) + ' his last game where he played ' + champName;
 }
 
 run();

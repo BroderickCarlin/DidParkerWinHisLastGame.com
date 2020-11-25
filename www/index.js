@@ -63,10 +63,14 @@ async function renew() {
 	}
 }
 
-let pageHtml = getPageHtml();
-// if (getMinutesSinceUpdate(pageHtml) > 5) {
-// 	renew();
-// 	pageHtml = getPageHtml();
-// }
+async function run() {
+	let pageHtml = await getPageHtml();
+	// if (getMinutesSinceUpdate(pageHtml) > 5) {
+	// 	renew();
+	// 	pageHtml = getPageHtml();
+	// }
 
-timeText.textContent = 'Last updated ' + getMinutesSinceUpdate(pageHtml) + 'min ago';
+	timeText.textContent = 'Last updated ' + getMinutesSinceUpdate(pageHtml) + 'min ago';
+}
+
+run();

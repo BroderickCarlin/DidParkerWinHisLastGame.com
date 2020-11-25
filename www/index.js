@@ -1,4 +1,7 @@
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
+const mainText = document.querySelector("#main-text");
+const timeText = document.querySelector("#update-text");
+
 
 async function getPageHtml() {
 	let resp = await fetch("https://didparkerwinhislastgame.netlify.app/opgg");
@@ -58,5 +61,12 @@ async function renew() {
 			delayVal = status.delay;
 		}
 	}
-	console.log("Status has been updated!");
 }
+
+let pageHtml = await getPageHtml();
+if (getMinutesSinceUpdate(pageHtml) > 5) {
+	await renew();
+	pageHtml = await getPageHtml();
+}
+
+timeText.textContent = 'Last updated ' + getMinutesSinceUpdate(pageHtml) + 'min ago';

@@ -74,20 +74,24 @@ function gameOutcome(didWin) {
 }
 
 async function run() {
-	let pageHtml = await getPageHtml();
-	if (getMinutesSinceUpdate(pageHtml) > 5) {
-		await renew();
-		pageHtml = await getPageHtml();
+	try {
+		let pageHtml = await getPageHtml();
+		if (getMinutesSinceUpdate(pageHtml) > 5) {
+			await renew();
+			pageHtml = await getPageHtml();
+		}
+
+		timeText.textContent = 'Last updated ' + getMinutesSinceUpdate(pageHtml) + 'min ago';
+
+		let games = pageHtml.getElementsByClassName("GameItemWrap");
+		let lastGame = games[0];
+		let didWin = lastGame.getElementsByClassName("GameResult")[0].innerText.search("Defeat") == -1;
+		let champName = cleanStr(lastGame.getElementsByClassName("ChampionName")[0].innerText);
+
+		mainText.textContent = 'Parker ' + gameOutcome(didWin) + ' his last game where he played ' + champName;
+	} catch (error) {
+	  mainText.textContent = 'ERROR: ' + error;
 	}
-
-	timeText.textContent = 'Last updated ' + getMinutesSinceUpdate(pageHtml) + 'min ago';
-
-	let games = pageHtml.getElementsByClassName("GameItemWrap");
-	let lastGame = games[0];
-	let didWin = lastGame.getElementsByClassName("GameResult")[0].innerText.search("Defeat") == -1;
-	let champName = cleanStr(lastGame.getElementsByClassName("ChampionName")[0].innerText);
-
-	mainText.textContent = 'Parker ' + gameOutcome(didWin) + ' his last game where he played ' + champName;
 }
 
 run();

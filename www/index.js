@@ -7,7 +7,7 @@ function cleanStr(str) {
 }
 
 async function getPageHtml() {
-	let resp = await fetch("https://didparkerwinhislastgame.netlify.app/opgg");
+	let resp = await fetch("/opgg");
 	let html = await resp.text();
 	var htmlObject = document.createElement('div');
 	htmlObject.innerHTML = html;
@@ -27,7 +27,7 @@ async function startRenew() {
 	let formData = new FormData();
 	formData.append('summonerId', '49323983');
 
-	let response = await fetch('https://didparkerwinhislastgame.netlify.app/renew', {
+	let response = await fetch('/renew', {
 	  method: 'POST',
 	  body: formData
 	});
@@ -40,7 +40,7 @@ async function renewStatus() {
 	let formData = new FormData();
 	formData.append('summonerId', '49323983');
 
-	let response = await fetch('https://didparkerwinhislastgame.netlify.app/renewStatus', {
+	let response = await fetch('/renewStatus', {
 	  method: 'POST',
 	  body: formData
 	});

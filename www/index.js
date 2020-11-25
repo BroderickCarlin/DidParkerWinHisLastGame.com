@@ -83,7 +83,7 @@ async function run() {
 	timeText.textContent = 'Last updated ' + getMinutesSinceUpdate(pageHtml) + 'min ago';
 
 	let games = pageHtml.getElementsByClassName("GameItemWrap");
-	let lastGame = games[games.length - 1];
+	let lastGame = games[0];
 	let didWin = lastGame.getElementsByClassName("GameResult")[0].innerText.search("Defeat") == -1;
 	let champName = cleanStr(lastGame.getElementsByClassName("ChampionName")[0].innerText);
 

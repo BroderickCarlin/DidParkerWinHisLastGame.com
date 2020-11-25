@@ -1,3 +1,5 @@
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
+
 async function getPageHtml() {
 	let resp = await fetch("https://didparkerwinhislastgame.netlify.app/opgg");
 	let html = await resp.text();

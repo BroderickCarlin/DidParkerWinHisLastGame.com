@@ -66,8 +66,8 @@ async function renew() {
 async function run() {
 	let pageHtml = await getPageHtml();
 	if (getMinutesSinceUpdate(pageHtml) > 5) {
-		renew();
-		pageHtml = getPageHtml();
+		await renew();
+		pageHtml = await getPageHtml();
 	}
 
 	timeText.textContent = 'Last updated ' + getMinutesSinceUpdate(pageHtml) + 'min ago';

@@ -23,16 +23,38 @@ async function startRenew() {
 	  method: 'POST',
 	  body: formData
 	});
-	return response;
+
+	let json = await response.json();
+	return json;
 }
 
-
 async function renewStatus() {
-	let url = new URL('https://didparkerwinhislastgame.netlify.app/renewStatus');
-	url.searchParams.set('summonerId', '49323983');
+	let formData = new FormData();
+	formData.append('summonerId', '49323983');
 
-	let response = await fetch(url, {
-	  method: 'POST'
+	let response = await fetch('https://didparkerwinhislastgame.netlify.app/renewStatus', {
+	  method: 'POST',
+	  body: formData
 	});
-	return response;
+
+	let json = await response.json();
+	return json;
+}
+
+async function renew() {
+	// start by kicking off the renew
+	let start = await startRenew();
+	if (!start.finish) {
+		// We'll need to loop until it's done!
+		let delayVal = start.delay;
+		while (true) {
+			await sleep(delayVal);
+			let status = await renewStatus();
+			if (status.finish) {
+				break;
+			}
+			delayVal = status.delay;
+		}
+	}
+	console.log("Status has been updated!");
 }

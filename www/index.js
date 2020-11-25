@@ -16,11 +16,12 @@ function getMinutesSinceUpdate(htmlObject) {
 }
 
 async function startRenew() {
-	let url = new URL('https://didparkerwinhislastgame.netlify.app/renew');
-	url.searchParams.set('summonerId', '49323983');
+	let formData = new FormData();
+	formData.append('summonerId', '49323983');
 
-	let response = await fetch(url, {
-	  method: 'POST'
+	let response = await fetch('https://didparkerwinhislastgame.netlify.app/renew', {
+	  method: 'POST',
+	  body: formData
 	});
 	return response;
 }

@@ -14,3 +14,24 @@ function getMinutesSinceUpdate(htmlObject) {
 	let delta = Math.floor((now - updatedTimestamp) / 60000);
 	return delta;
 }
+
+async function startRenew() {
+	let url = new URL('https://didparkerwinhislastgame.netlify.app/renew');
+	url.searchParams.set('summonerId', '49323983');
+
+	let response = await fetch(url, {
+	  method: 'POST'
+	});
+	return response;
+}
+
+
+async function renewStatus() {
+	let url = new URL('https://didparkerwinhislastgame.netlify.app/renewStatus');
+	url.searchParams.set('summonerId', '49323983');
+
+	let response = await fetch(url, {
+	  method: 'POST'
+	});
+	return response;
+}

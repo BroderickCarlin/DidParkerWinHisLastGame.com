@@ -1,2 +1,3 @@
 install_rust:
-	cargo --version
+	rustup default stable
+	curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh

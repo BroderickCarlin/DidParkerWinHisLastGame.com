@@ -1,4 +1,4 @@
 install_rust:
-# 	rustup default stable
+	rustup default stable
 	curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 	cd wasm-game-of-life; wasm-pack build

@@ -4,5 +4,6 @@ install_rust:
 
 build_gol:
 	cd wasm-game-of-life; wasm-pack build
+	cd wasm-game-of-life; npm install
 
 build: install_rust build_gol

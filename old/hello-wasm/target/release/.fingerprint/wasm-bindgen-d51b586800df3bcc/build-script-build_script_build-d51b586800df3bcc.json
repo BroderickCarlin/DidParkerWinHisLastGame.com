@@ -1,0 +1,1 @@
+{"rustc":7151530983591731262,"features":"[\"default\", \"spans\", \"std\"]","target":10429514197457385088,"profile":2574335274271406459,"path":11874814609608293087,"deps":[],"local":[{"CheckDepInfo":{"dep_info":"release/.fingerprint/wasm-bindgen-d51b586800df3bcc/dep-build-script-build_script_build-d51b586800df3bcc"}}],"rustflags":[],"metadata":1893760814388251298}

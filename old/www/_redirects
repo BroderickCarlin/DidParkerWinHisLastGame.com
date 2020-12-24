@@ -1,4 +1,0 @@
-# Redirects from what the browser requests to what we serve
-/opgg              https://na.op.gg/summoner/userName=PGS 200
-/renew             https://na.op.gg/summoner/ajax/renew.json/ 200
-/renewStatus       https://na.op.gg/summoner/ajax/renewStatus.json/ 200

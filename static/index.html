@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>My Rust + Webpack project!</title>
+    <title>Advent of Code</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="index.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   </head>
   <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">AoC 2020</a>
+      </div>
+    </nav>
+    
+    <main class="container">
+    
+      <div class="text-center py-5 px-3">
+        <h1>AoC 2020 Solutions<br>🦀 + 🕸️</h1>
+        <p class="lead">This page is my attempt at solving the AoC 2020 puzzles <br> using Rust compiled to WASM and running in the browser!</p>
+      </div>
+
+      <div class="text-start" id="day1">
+        <h1>Day 1</h1>
+        <form class="row g-1">
+          <div class="col-12">
+            <textarea class="form-control" id="day1Textarea" placeholder="Puzzle Input" required></textarea>
+          </div>
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit">Solve Puzzle</button>
+          </div>
+        </form>
+        <h5 id="ans1">Answer 1:</h5>
+        <h5 id="ans2">Answer 2:</h5>
+      </div>
+
+      <!-- <hr>
+
+      <div class="text-start" id="day2">
+        <h1>Day 2</h1>
+        <form class="row g-1">
+          <div class="col-12">
+            <textarea class="form-control" id="day1Textarea" placeholder="Puzzle Input" required></textarea>
+          </div>
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit">Solve Puzzle</button>
+          </div>
+        </form>
+        <h5 id="ans1">Answer 1:</h5>
+        <h5 id="ans2">Answer 2:</h5>
+      </div> -->
+    
+    </main>
     <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
   </body>
 </html>

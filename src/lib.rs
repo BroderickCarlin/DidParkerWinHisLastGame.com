@@ -8,25 +8,52 @@ use wasm_bindgen::prelude::*;
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
-// This is like the `main` function, except for JavaScript.
-#[wasm_bindgen(start)]
-pub fn main_js() -> Result<(), JsValue> {
-    // This provides better error messages in debug mode.
-    // It's disabled in release mode so it doesn't bloat up the file size.
-    #[cfg(debug_assertions)]
-    console_error_panic_hook::set_once();
-
-    // Your code goes here!
-    // Use `web_sys`'s global `window` function to get a handle on the global
-    // window object.
-    let window = web_sys::window().expect("no global `window` exists");
-    let document = window.document().expect("should have a document on window");
-    let body = document.body().expect("document should have a body");
-
-    // Manufacture the element we're gonna append
-    let val = document.create_element("p")?;
-    val.set_inner_html("Hello from Rust!");
-
-    body.append_child(&val)?;
-    Ok(())
+fn parse_input<T>(input: &str) -> Result<Vec<T>, String> 
+where
+    T: std::str::FromStr 
+{
+    let mut output = vec![];
+    for line in input.lines() {
+        output.push(line.parse().map_err(|_| format!("Failed to parse \"{:?}\" as an i32", line))?);
+    }
+    Ok(output)
 }
+
+#[wasm_bindgen]
+pub fn day1puzzle1(input: &str) -> i32 {
+    let input = parse_input::<i32>(input).unwrap();
+    for i in 0..input.len() {
+        for j in (i+1)..input.len() {
+            if input[i] + input[j] == 2020 {
+                return input[i] * input[j];
+            }
+        }
+    }
+    0
+}
+
+#[wasm_bindgen]
+pub fn day1puzzle2(input: &str) -> i32 {
+    let input = parse_input::<i32>(input).unwrap();
+    for i in 0..input.len() {
+        for j in (i+1)..input.len() {
+            for k in (j+1)..input.len() {
+                if input[i] + input[j] + input[k] == 2020 {
+                    return input[i] * input[j] * input[k];
+                }
+            }
+        }
+    }
+    0
+}
+
+
+// #[wasm_bindgen]
+// pub fn day2puzzle1(input: &str) -> i32 {
+//     input.len() as i32
+// }
+
+// #[wasm_bindgen]
+// pub fn day2puzzle2(_input: &str) -> i32 {
+//     1
+// }

@@ -2,6 +2,7 @@ use wasm_bindgen::prelude::*;
 mod day1;
 mod day2;
 mod day3;
+mod day4;
 
 #[cfg(feature = "wee_alloc")]
 #[global_allocator]
@@ -38,4 +39,15 @@ pub fn day3puzzle1(input: &str) -> i64 {
 #[wasm_bindgen]
 pub fn day3puzzle2(input: &str) -> i64 {
     day3::puzzle2(input)
+}
+
+// Day 4
+#[wasm_bindgen]
+pub fn day4puzzle1(input: &str) -> i64 {
+    day4::puzzle1(input)
+}
+
+#[wasm_bindgen]
+pub fn day4puzzle2(input: &str) -> i64 {
+    day4::puzzle2(input)
 }

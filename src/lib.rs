@@ -7,6 +7,7 @@ mod day5;
 mod day6;
 mod day7;
 mod day8;
+mod day9;
 
 #[cfg(feature = "wee_alloc")]
 #[global_allocator]
@@ -98,4 +99,15 @@ pub fn day8puzzle1(input: &str) -> i64 {
 #[wasm_bindgen]
 pub fn day8puzzle2(input: &str) -> i64 {
     day8::puzzle2(input)
+}
+
+// Day 9
+#[wasm_bindgen]
+pub fn day9puzzle1(input: &str) -> i64 {
+    day9::puzzle1(input)
+}
+
+#[wasm_bindgen]
+pub fn day9puzzle2(input: &str) -> i64 {
+    day9::puzzle2(input)
 }

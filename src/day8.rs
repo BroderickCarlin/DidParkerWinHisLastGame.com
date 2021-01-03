@@ -1,8 +1,8 @@
 #[derive(Copy, Clone)]
 enum Instruction {
-    acc(i64),
-    nop(i64),
-    jmp(i64),
+    Acc(i64),
+    Nop(i64),
+    Jmp(i64),
 }
 
 struct Computer {
@@ -26,9 +26,9 @@ impl Computer {
         for line in raw.lines() {
             let mut vals = line.split(' ');
             match vals.next().unwrap() {
-                "nop" => self.instructions.push((Instruction::nop(vals.next().unwrap().parse().unwrap()), false)),
-                "acc" => self.instructions.push((Instruction::acc(vals.next().unwrap().parse().unwrap()), false)),
-                "jmp" => self.instructions.push((Instruction::jmp(vals.next().unwrap().parse().unwrap()), false)),
+                "nop" => self.instructions.push((Instruction::Nop(vals.next().unwrap().parse().unwrap()), false)),
+                "acc" => self.instructions.push((Instruction::Acc(vals.next().unwrap().parse().unwrap()), false)),
+                "jmp" => self.instructions.push((Instruction::Jmp(vals.next().unwrap().parse().unwrap()), false)),
                 _ => {},
             }
         }
@@ -53,14 +53,14 @@ impl Computer {
             self.call_stack.push(self.pc);
 
             match instruction {
-                Instruction::acc(inc) => {
+                Instruction::Acc(inc) => {
                     self.acc += inc;
                     self.pc += 1;
                 }, 
-                Instruction::nop(_) => {
+                Instruction::Nop(_) => {
                     self.pc += 1;
                 }
-                Instruction::jmp(inc) => {
+                Instruction::Jmp(inc) => {
                     self.pc += inc;
                 }
             }
@@ -70,12 +70,12 @@ impl Computer {
 
     fn flip_inst(&mut self, index: usize) {
         match self.instructions[index].0 {
-            Instruction::acc(_) => {}, 
-            Instruction::nop(val) => {
-                self.instructions[index].0 = Instruction::jmp(val);
+            Instruction::Acc(_) => {}, 
+            Instruction::Nop(val) => {
+                self.instructions[index].0 = Instruction::Jmp(val);
             }, 
-            Instruction::jmp(val) => {
-                self.instructions[index].0 = Instruction::nop(val);
+            Instruction::Jmp(val) => {
+                self.instructions[index].0 = Instruction::Nop(val);
             }, 
         }
     }

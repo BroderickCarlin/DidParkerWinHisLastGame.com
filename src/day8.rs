@@ -1,21 +1,9 @@
-
-
 #[derive(Copy, Clone)]
 enum Instruction {
     acc(i64),
     nop(i64),
     jmp(i64),
 }
-
-// impl Instruction {
-//     fn flip(&mut self) {
-//         self = match self {
-//             Instruction::acc(val) => Instruction::acc(*val),
-//             Instruction::nop(val) => Instruction::jmp(*val),
-//             Instruction::jmp(val) => Instruction::nop(*val),
-//         };
-//     }
-// }
 
 struct Computer {
     acc: i64,
